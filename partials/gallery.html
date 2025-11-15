@@ -1,0 +1,283 @@
+<!-- گالری تصاویر -->
+<section class="py-12 bg-base-100">
+  <div class="container mx-auto px-4">
+    <!-- عنوان گالری -->
+    <div class="text-center mb-12">
+      <div class="flex justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+          <circle cx="12" cy="13" r="3"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-4">گالری تصاویر</h1>
+      <p class="text-lg text-base-content max-w-2xl mx-auto">
+        مجموعه‌ای از زیباترین عکس‌ها از سراسر جهان را کاوش کنید
+      </p>
+    </div>
+
+    <!-- فیلترها و جستجو -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-10">
+      <!-- فیلترها -->
+      <div class="flex flex-wrap justify-center gap-3">
+        <button class="btn btn-active btn-primary text-sm md:text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+            <line x1="21" y1="6" x2="3" y2="6"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+            <line x1="17" y1="18" x2="3" y2="18"/>
+          </svg>
+          همه
+        </button>
+        <button class="btn btn-outline btn-primary text-sm md:text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+            <path d="m8 3 4 8 5-5 5 15H2L8 3z"/>
+          </svg>
+          طبیعت
+        </button>
+        <button class="btn btn-outline btn-primary text-sm md:text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+            <circle cx="12" cy="8" r="5"/>
+            <path d="M20 21a8 8 0 0 0-16 0"/>
+          </svg>
+          پرتره
+        </button>
+        <button class="btn btn-outline btn-primary text-sm md:text-base">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+            <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/>
+            <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"/>
+          </svg>
+          شهری
+        </button>
+      </div>
+      
+      <!-- جستجو -->
+      <div class="join">
+        <input type="text" placeholder="جستجو در گالری..." class="input input-bordered join-item w-full md:w-auto" dir="rtl">
+        <button class="btn btn-primary join-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- شبکه تصاویر -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+      <!-- تصویر ۱ -->
+      <div class="card bg-base-100 shadow-xl overflow-hidden group">
+        <figure class="h-48 md:h-56 overflow-hidden relative">
+          <img src="https://picsum.photos/400/300?random=1" alt="منظره کوهستان" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="btn btn-circle btn-primary opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M12 5v14"/>
+              </svg>
+            </button>
+          </div>
+        </figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base md:text-lg">منظره کوهستان</h3>
+          <p class="text-sm text-base-content/70">منظره زیبای کوهستان در طلوع آفتاب</p>
+          <div class="card-actions justify-between mt-2">
+            <div class="flex gap-1">
+              <span class="badge badge-outline badge-sm">طبیعت</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8"/>
+                  <path d="M15 18h-5"/>
+                  <path d="M10 6h8v4h-8V6Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تصویر ۲ -->
+      <div class="card bg-base-100 shadow-xl overflow-hidden group">
+        <figure class="h-48 md:h-56 overflow-hidden relative">
+          <img src="https://picsum.photos/400/300?random=2" alt="چراغ‌های شهر" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="btn btn-circle btn-primary opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M12 5v14"/>
+              </svg>
+            </button>
+          </div>
+        </figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base md:text-lg">چراغ‌های شهر</h3>
+          <p class="text-sm text-base-content/70">منظره شهری در شب</p>
+          <div class="card-actions justify-between mt-2">
+            <div class="flex gap-1">
+              <span class="badge badge-outline badge-sm">شهری</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8"/>
+                  <path d="M15 18h-5"/>
+                  <path d="M10 6h8v4h-8V6Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تصویر ۳ -->
+      <div class="card bg-base-100 shadow-xl overflow-hidden group">
+        <figure class="h-48 md:h-56 overflow-hidden relative">
+          <img src="https://picsum.photos/400/300?random=3" alt="غروب ساحل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="btn btn-circle btn-primary opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M12 5v14"/>
+              </svg>
+            </button>
+          </div>
+        </figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base md:text-lg">غروب ساحل</h3>
+          <p class="text-sm text-base-content/70">ساحل گرمسیری در ساعت طلایی</p>
+          <div class="card-actions justify-between mt-2">
+            <div class="flex gap-1">
+              <span class="badge badge-outline badge-sm">طبیعت</span>
+              <span class="badge badge-outline badge-sm">سفر</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8"/>
+                  <path d="M15 18h-5"/>
+                  <path d="M10 6h8v4h-8V6Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- تصویر ۴ -->
+      <div class="card bg-base-100 shadow-xl overflow-hidden group">
+        <figure class="h-48 md:h-56 overflow-hidden relative">
+          <img src="https://picsum.photos/400/300?random=4" alt="مسیر جنگل" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+            <button class="btn btn-circle btn-primary opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M12 5v14"/>
+              </svg>
+            </button>
+          </div>
+        </figure>
+        <div class="card-body p-4">
+          <h3 class="card-title text-base md:text-lg">مسیر جنگل</h3>
+          <p class="text-sm text-base-content/70">نور خورشید از میان درختان</p>
+          <div class="card-actions justify-between mt-2">
+            <div class="flex gap-1">
+              <span class="badge badge-outline badge-sm">طبیعت</span>
+              <span class="badge badge-outline badge-sm">منظره</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </button>
+              <button class="btn btn-ghost btn-sm p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8"/>
+                  <path d="M15 18h-5"/>
+                  <path d="M10 6h8v4h-8V6Z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- دکمه بارگذاری بیشتر -->
+    <div class="flex justify-center mt-12">
+      <button class="btn btn-outline btn-wide">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+          <path d="M12 5v14"/>
+          <path d="m19 12-7 7-7-7"/>
+        </svg>
+        بارگذاری تصاویر بیشتر
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- مودال برای جزئیات تصویر -->
+<div class="modal" id="image-modal">
+  <div class="modal-box max-w-4xl">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-lg">جزئیات تصویر</h3>
+      <button class="btn btn-ghost btn-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18"/>
+          <path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="py-4">
+      <img src="https://picsum.photos/600/400" alt="تصویر انتخاب شده" class="w-full rounded-lg" />
+      <div class="mt-4">
+        <h4 class="text-xl font-semibold">عنوان تصویر</h4>
+        <p class="mt-2">توضیحات کامل تصویر در این قسمت قرار می‌گیرد.</p>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <div class="badge badge-primary">برچسب ۱</div>
+          <div class="badge badge-secondary">برچسب ۲</div>
+          <div class="badge badge-accent">برچسب ۳</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-action">
+      <button class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        دانلود
+      </button>
+      <button class="btn btn-ghost">بستن</button>
+    </div>
+  </div>
+</div>

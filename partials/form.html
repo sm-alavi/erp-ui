@@ -1,0 +1,126 @@
+<div class="card w-full max-w-2xl mx-auto bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title text-2xl font-bold border-b-2 border-primary pb-3 mb-6">
+      <i class="fas fa-user-plus ml-2"></i>
+      فرم ثبت نام
+    </h2>
+    
+    <form class="space-y-4">
+      <!-- Row 1: Name and Family -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">نام</span>
+          </label>
+          <input type="text" placeholder="نام خود را وارد کنید" class="input input-bordered" />
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">نام خانوادگی</span>
+          </label>
+          <input type="text" placeholder="نام خانوادگی خود را وارد کنید" class="input input-bordered" />
+        </div>
+      </div>
+
+      <!-- Row 2: Email and Phone -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">ایمیل</span>
+          </label>
+          <input type="email" placeholder="example@domain.com" class="input input-bordered" />
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">شماره تماس</span>
+          </label>
+          <input type="tel" placeholder="09xxxxxxxxx" class="input input-bordered" />
+        </div>
+      </div>
+
+      <!-- Row 3: Password Fields -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">رمز عبور</span>
+          </label>
+          <input type="password" placeholder="رمز عبور خود را وارد کنید" class="input input-bordered" />
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">تکرار رمز عبور</span>
+          </label>
+          <input type="password" placeholder="رمز عبور را تکرار کنید" class="input input-bordered" />
+        </div>
+      </div>
+
+      <!-- Row 4: Date and Select -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">تاریخ تولد</span>
+          </label>
+          <input type="date" class="input input-bordered" />
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">استان</span>
+          </label>
+          <select class="select select-bordered">
+            <option disabled selected>استان خود را انتخاب کنید</option>
+            <option>تهران</option>
+            <option>اصفهان</option>
+            <option>فارس</option>
+            <option>خراسان رضوی</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 5: Textarea -->
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text font-semibold">آدرس</span>
+        </label>
+        <textarea class="textarea textarea-bordered h-24" placeholder="آدرس کامل خود را وارد کنید"></textarea>
+      </div>
+
+      <!-- Row 6: Checkbox and Radio -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="form-control">
+          <label class="label cursor-pointer justify-start gap-3">
+            <input type="checkbox" class="checkbox checkbox-primary" />
+            <span class="label-text">قوانین را می پذیرم</span>
+          </label>
+        </div>
+        
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-semibold mb-2">جنسیت</span>
+          </label>
+          <div class="flex gap-4">
+            <label class="label cursor-pointer gap-2">
+              <input type="radio" name="gender" class="radio radio-primary" />
+              <span class="label-text">مرد</span>
+            </label>
+            <label class="label cursor-pointer gap-2">
+              <input type="radio" name="gender" class="radio radio-primary" />
+              <span class="label-text">زن</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="card-actions justify-end mt-6">
+        <button class="btn btn-primary w-full md:w-auto">
+          <i class="fas fa-paper-plane ml-2"></i>
+          ثبت اطلاعات
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

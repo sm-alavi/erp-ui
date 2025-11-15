@@ -1,0 +1,830 @@
+<div class="max-w-7xl mx-auto font-vazir" dir="rtl">
+    <!-- Filter Panel -->
+    <div class="bg-white rounded-2xl shadow-lg mb-6 border border-gray-100">
+        <!-- Collapsible Header -->
+        <div class="collapse collapse-plus border-base-200">
+            <input type="checkbox" class="peer" checked />
+            <div class="collapse-title text-xl font-bold bg-gradient-to-l from-blue-50 to-white flex items-center justify-between py-4">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="filter" class="w-5 h-5 text-blue-600"></i>
+                    فیلترهای حضور و غیاب
+                    <span class="badge badge-primary badge-sm mr-2">۲ فیلتر فعال</span>
+                </div>
+                <span class="text-sm text-gray-500">کلیک برای جمع/باز کردن</span>
+            </div>
+            
+            <!-- Filter Content -->
+            <div class="collapse-content bg-white p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Search Input -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                                جستجوی پرسنل
+                            </span>
+                        </label>
+                        <input type="text" placeholder="نام، نام خانوادگی یا کد پرسنلی..." class="input input-bordered w-full input-md bg-gray-50" />
+                    </div>
+                    
+                    <!-- Department Dropdown -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="building" class="w-4 h-4"></i>
+                                واحد سازمانی
+                            </span>
+                        </label>
+                        <select class="select select-bordered w-full select-md bg-gray-50">
+                            <option selected>همه واحدها</option>
+                            <option>فناوری اطلاعات</option>
+                            <option>مالی و حسابداری</option>
+                            <option>منابع انسانی</option>
+                            <option>بازاریابی</option>
+                            <option>فروش</option>
+                            <option>پشتیبانی</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Status Dropdown -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="activity" class="w-4 h-4"></i>
+                                وضعیت حضور
+                            </span>
+                        </label>
+                        <select class="select select-bordered w-full select-md bg-gray-50">
+                            <option selected>همه وضعیت‌ها</option>
+                            <option>حاضر</option>
+                            <option>غایب</option>
+                            <option>تأخیر</option>
+                            <option>مرخصی</option>
+                            <option>ماموریت</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Date Range -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="calendar" class="w-4 h-4"></i>
+                                بازه زمانی
+                            </span>
+                        </label>
+                        <div class="flex gap-2">
+                            <input type="date" class="input input-bordered w-1/2 input-md bg-gray-50" value="2024-01-01" />
+                            <input type="date" class="input input-bordered w-1/2 input-md bg-gray-50" value="2024-01-15" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Filters -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 pt-6 border-t border-gray-100">
+                    <!-- Attendance Type -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="clock" class="w-4 h-4"></i>
+                                نوع گزارش
+                            </span>
+                        </label>
+                        <select class="select select-bordered w-full select-md bg-gray-50">
+                            <option selected>گزارش روزانه</option>
+                            <option>گزارش ماهانه</option>
+                            <option>گزارش سالانه</option>
+                            <option>گزارش تأخیرها</option>
+                            <option>گزارش مرخصی‌ها</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Shift Type -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                                شیفت کاری
+                            </span>
+                        </label>
+                        <div class="flex flex-col gap-3 mt-2">
+                            <label class="cursor-pointer flex items-center gap-3">
+                                <input type="checkbox" checked="checked" class="checkbox checkbox-primary checkbox-sm" />
+                                <span class="label-text">شیفت صبح</span>
+                            </label>
+                            <label class="cursor-pointer flex items-center gap-3">
+                                <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
+                                <span class="label-text">شیفت عصر</span>
+                            </label>
+                            <label class="cursor-pointer flex items-center gap-3">
+                                <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
+                                <span class="label-text">شیفت شب</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Sort Options -->
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold flex items-center gap-2">
+                                <i data-lucide="arrow-up-down" class="w-4 h-4"></i>
+                                مرتب سازی
+                            </span>
+                        </label>
+                        <select class="select select-bordered w-full select-md bg-gray-50 mt-2">
+                            <option selected>تاریخ - نزولی</option>
+                            <option>تاریخ - صعودی</option>
+                            <option>نام - الفبا</option>
+                            <option>تعداد تأخیر</option>
+                            <option>ساعات کاری</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-6 border-t border-gray-100">
+                    <div class="text-sm text-gray-500 flex items-center gap-2">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                        ۸۶ رکورد حضور و غیاب یافت شد
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="btn btn-outline btn-sm gap-2">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                            بازنشانی فیلترها
+                        </button>
+                        <button class="btn btn-primary btn-sm gap-2">
+                            <i data-lucide="filter" class="w-4 h-4"></i>
+                            اعمال فیلترها
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+        <!-- Table Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-6 border-b border-gray-100">
+            <div>
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i data-lucide="clipboard-list" class="w-5 h-5 text-blue-600"></i>
+                    گزارش حضور و غیاب
+                </h2>
+                <p class="text-gray-500 text-sm mt-1">نمایش ۱ تا ۱۰ از ۸۶ رکورد - تاریخ: ۱۴۰۲/۱۰/۱۵</p>
+            </div>
+            <div class="flex gap-3">
+                <button class="btn btn-outline btn-sm gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    خروجی Excel
+                </button>
+                <button class="btn btn-outline btn-sm gap-2">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    چاپ گزارش
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+            <table class="table table-zebra w-full">
+                <thead>
+                    <tr class="bg-gray-50">
+                        <th class="text-right font-bold">
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                انتخاب
+                            </label>
+                        </th>
+                        <th class="text-right font-bold">پرسنل</th>
+                        <th class="text-right font-bold">واحد سازمانی</th>
+                        <th class="text-right font-bold">تاریخ</th>
+                        <th class="text-right font-bold">ساعت ورود</th>
+                        <th class="text-right font-bold">ساعت خروج</th>
+                        <th class="text-right font-bold">وضعیت</th>
+                        <th class="text-right font-bold">تأخیر (دقیقه)</th>
+                        <th class="text-right font-bold">ساعات کاری</th>
+                        <th class="text-right font-bold">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-blue-100 text-blue-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">محمد رضایی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۱</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">فناوری اطلاعات</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-green-600">۰۸:۱۵</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۶:۴۵</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success badge-sm gap-1">
+                                <i data-lucide="check-circle" class="w-3 h-3"></i>
+                                حاضر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-orange-500 font-medium">۱۵</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-sm">۸.۵ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Row 2 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-green-100 text-green-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">فاطمه محمدی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۲</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">منابع انسانی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-green-600">۰۷:۵۵</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۶:۳۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success badge-sm gap-1">
+                                <i data-lucide="check-circle" class="w-3 h-3"></i>
+                                حاضر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-green-500 font-medium">۰</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm">۸.۵ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Row 3 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-purple-100 text-purple-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">علی کریمی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۳</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">مالی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-red-600">۰۹:۴۵</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۷:۰۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-warning badge-sm gap-1">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                تأخیر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-red-500 font-medium">۱۰۵</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <span class="text-sm">۷ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 4 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-orange-100 text-orange-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">زهرا حسینی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۴</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">بازاریابی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-error badge-sm gap-1">
+                                <i data-lucide="x-circle" class="w-3 h-3"></i>
+                                غایب
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-gray-400">--</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-red-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-sm text-red-500">۰ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 5 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-pink-100 text-pink-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">رضا احمدی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۵</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">فروش</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-green-600">۰۸:۰۵</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۶:۲۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success badge-sm gap-1">
+                                <i data-lucide="check-circle" class="w-3 h-3"></i>
+                                حاضر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-orange-500 font-medium">۵</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 98%"></div>
+                                </div>
+                                <span class="text-sm">۸ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 6 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-indigo-100 text-indigo-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">سمیرا جعفری</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۶</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">پشتیبانی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-info badge-sm gap-1">
+                                <i data-lucide="plane" class="w-3 h-3"></i>
+                                مرخصی
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-gray-400">--</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-sm text-blue-500">مرخصی</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 7 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-teal-100 text-teal-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">امیر عباسی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۷</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">فناوری اطلاعات</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-green-600">۰۸:۰۰</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۷:۳۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success badge-sm gap-1">
+                                <i data-lucide="check-circle" class="w-3 h-3"></i>
+                                حاضر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-green-500 font-medium">۰</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm">۹.۵ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 8 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-rose-100 text-rose-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">نرگس موسوی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۸</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">مالی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-gray-400">--:--</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-warning badge-sm gap-1">
+                                <i data-lucide="briefcase" class="w-3 h-3"></i>
+                                ماموریت
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-gray-400">--</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-orange-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-sm text-orange-500">ماموریت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 9 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-amber-100 text-amber-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">حسین نظری</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۰۹</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">بازاریابی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-red-600">۰۹:۲۰</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۶:۵۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-warning badge-sm gap-1">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                تأخیر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-red-500 font-medium">۸۰</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm">۷.۵ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Row 10 -->
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td>
+                            <label>
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                            </label>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div class="avatar placeholder">
+                                    <div class="bg-cyan-100 text-cyan-600 rounded-xl w-10 h-10 flex items-center justify-center">
+                                        <i data-lucide="user" class="w-5 h-5"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">مینا رحیمی</div>
+                                    <div class="text-sm text-gray-500">کد: ۱۰۱۰</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge badge-outline badge-sm">منابع انسانی</span>
+                        </td>
+                        <td class="text-sm">۱۴۰۲/۱۰/۱۵</td>
+                        <td>
+                            <div class="font-semibold text-green-600">۰۷:۵۰</div>
+                        </td>
+                        <td>
+                            <div class="font-semibold text-blue-600">۱۶:۴۰</div>
+                        </td>
+                        <td>
+                            <span class="badge badge-success badge-sm gap-1">
+                                <i data-lucide="check-circle" class="w-3 h-3"></i>
+                                حاضر
+                            </span>
+                        </td>
+                        <td>
+                            <div class="text-green-500 font-medium">۰</div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-2">
+                                <div class="w-16 bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm">۸.۸ ساعت</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex gap-1">
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="eye" class="w-3 h-3"></i>
+                                </button>
+                                <button class="btn btn-ghost btn-xs gap-1">
+                                    <i data-lucide="edit" class="w-3 h-3"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 p-6 border-t border-gray-100">
+            <div class="text-sm text-gray-500">
+                نمایش ۱ تا ۱۰ از ۸۶ رکورد
+            </div>
+            <div class="join">
+                <button class="join-item btn btn-sm btn-ghost">
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    قبلی
+                </button>
+                <button class="join-item btn btn-sm">۱</button>
+                <button class="join-item btn btn-sm btn-active">۲</button>
+                <button class="join-item btn btn-sm">۳</button>
+                <button class="join-item btn btn-sm">۴</button>
+                <button class="join-item btn btn-sm">۵</button>
+                <button class="join-item btn btn-sm btn-ghost">
+                    بعدی
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+</script>

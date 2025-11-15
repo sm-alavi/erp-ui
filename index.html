@@ -19,8 +19,8 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-    <!-- Add Alpine.js to your head -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- HTMX -->
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
 
     <script>
         tailwind.config = {
@@ -33,255 +33,231 @@
             },
         };
     </script>
-    <style>
-        [x-cloak] { display: none !important; }
-        /* Prevent horizontal scroll */
-        body {
-            overflow-x: hidden;
-        }
-    </style>
 </head>
 
-<body class="bg-base-100 font-sans">
-    <!-- Alpine.js Component -->
-    <div x-data="{ 
-        sidebarCollapsed: false, 
-        sidebarOpen: false,
-        toggleFullCollapse() {
-            this.sidebarCollapsed = !this.sidebarCollapsed;
-            localStorage.setItem('sidebarCollapsed', this.sidebarCollapsed);
-        },
-        toggleMobileSidebar() {
-            this.sidebarOpen = !this.sidebarOpen;
-        }
-    }" x-init="sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true'">
-        <!-- Navbar -->
-        <div class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-50">
-            <div class="flex-1">
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-button" class="btn btn-ghost btn-circle lg:hidden" @click="toggleMobileSidebar()">
-                    <i data-lucide="menu"></i>
-                </button>
-                  <!-- Sidebar Collapse/Expand Button -->
-                <button id="sidebar-collapse-button" class="ms-2 btn btn-ghost btn-circle hidden lg:flex" 
-                    @click="toggleFullCollapse()">
-                    <i data-lucide="panel-right-close" class="w-7 h-7" x-show="!sidebarCollapsed"></i>
-                    <i data-lucide="panel-right-open" class="w-7 h-7" x-show="sidebarCollapsed" x-cloak></i>
-                </button>
+<body class="bg-base-100 font-sans flex flex-col min-h-screen">
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-50">
+        <div class="flex-1">
+    <!-- Mobile menu button -->
+    <button id="mobile-menu-button" class="btn btn-ghost btn-circle lg:hidden">
+        <i data-lucide="menu"></i>
+    </button>
 
-                <!-- Brand/Logo -->
-                <a class="btn btn-ghost text-xl ms-2">سامانه مدیریت منابع سازمان</a>
+    <!-- Sidebar Collapse/Expand Button -->
+    <button id="sidebar-collapse-button" class="ms-2 btn btn-ghost btn-circle hidden lg:flex">
+        <i data-lucide="panel-right-close" class="w-7 h-7" id="collapse-icon"></i>
+        <i data-lucide="panel-right-open" class="w-7 h-7 hidden" id="expand-icon"></i>
+    </button>
+
+    <!-- Brand/Logo -->
+    <a class="btn btn-ghost text-xl ms-2">سامانه مدیریت منابع سازمان</a>
+</div>
+
+<div class="flex-none gap-2">
+
+    <!-- Search input -->
+    <div class="form-control hidden lg:flex">
+        <input type="text" placeholder="جستجو..." class="input input-bordered w-32 md:w-auto" />
+    </div>
+
+    <!-- Applications Dropdown -->
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle hidden lg:flex">
+            <i data-lucide="grid-3x3" class="w-6 h-6"></i>
+        </div>
+        <div tabindex="0" class="dropdown-content z-[1] bg-base-100 rounded-box shadow-xl p-6 w-80 mt-4">
+            <div class="grid grid-cols-3 gap-4 mb-4">
+
+                <!-- App 1 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">پیام‌رسان</span>
+                </div>
+
+                <!-- App 2 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">فروشگاه</span>
+                </div>
+
+                <!-- App 3 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">آمار</span>
+                </div>
+
+                <!-- App 4 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="settings" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">تنظیمات</span>
+                </div>
+
+                <!-- App 5 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">کاربران</span>
+                </div>
+
+                <!-- App 6 -->
+                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-md">
+                        <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <span class="text-xs font-medium">اسناد</span>
+                </div>
             </div>
 
-            <div class="flex-none gap-2">
-              
-                <!-- Search input -->
-                <div class="form-control hidden lg:flex">
-                    <input type="text" placeholder="جستجو..." class="input input-bordered w-32 md:w-auto" />
-                </div>
-
-                <!-- Applications Dropdown -->
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle hidden lg:flex">
-                        <i data-lucide="grid-3x3" class="w-6 h-6"></i>
-                    </div>
-                    <div tabindex="0" class="dropdown-content z-[1] bg-base-100 rounded-box shadow-xl p-6 w-80 mt-4">
-                        <div class="grid grid-cols-3 gap-4 mb-4">
-                            <!-- App 1 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">پیام‌رسان</span>
-                            </div>
-
-                            <!-- App 2 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">فروشگاه</span>
-                            </div>
-
-                            <!-- App 3 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">آمار</span>
-                            </div>
-
-                            <!-- App 4 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="settings" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">تنظیمات</span>
-                            </div>
-
-                            <!-- App 5 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="users" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">کاربران</span>
-                            </div>
-
-                            <!-- App 6 -->
-                            <div
-                                class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-md">
-                                    <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <span class="text-xs font-medium">اسناد</span>
-                            </div>
-                        </div>
-                        <div class="border-t pt-4">
-                            <button class="btn btn-outline btn-sm w-full">
-                                <i data-lucide="plus" class="w-4 h-4"></i>
-                                مشاهده همه برنامه‌ها
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Notification icon -->
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                        <div class="indicator">
-                            <i data-lucide="bell"></i>
-                            <span class="badge badge-xs badge-primary indicator-item">۳</span>
-                        </div>
-                    </div>
-                    <div tabindex="0"
-                        class="mt-3 z-[1] dropdown-content bg-base-100 rounded-box shadow-xl w-80 max-h-96 overflow-hidden">
-                        <!-- Notification Header -->
-                        <div class="p-4 border-b border-base-300">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-bold text-lg">اعلان‌ها</h3>
-                                <span class="badge badge-primary badge-sm">۳ جدید</span>
-                            </div>
-                        </div>
-
-                        <!-- Notification List -->
-                        <div class="overflow-y-auto max-h-64">
-                            <!-- Unread Notification -->
-                            <div class="p-4 border-b border-base-300 hover:bg-base-200 cursor-pointer transition-colors">
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="user-plus" class="w-5 h-5 text-white"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="font-semibold text-sm">کاربر جدید ثبت شد</p>
-                                        <p class="text-xs text-base-content/70 mt-1">
-                                            کاربر "فاطمه محمدی" در سیستم ثبت نام کرد
-                                        </p>
-                                        <div class="flex items-center gap-2 mt-2">
-                                            <span class="text-xs text-primary">۲ دقیقه پیش</span>
-                                            <span class="badge badge-primary badge-xs">جدید</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Read Notification -->
-                            <div class="p-4 hover:bg-base-200 cursor-pointer transition-colors opacity-70">
-                                <div class="flex items-start gap-3">
-                                    <div
-                                        class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="font-semibold text-sm">بروزرسانی سیستم</p>
-                                        <p class="text-xs text-base-content/70 mt-1">
-                                            بروزرسانی نسخه ۲.۱.۰ با موفقیت انجام شد
-                                        </p>
-                                        <span class="text-xs text-base-content/50 mt-2 block">۲ روز پیش</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Notification Footer -->
-                        <div class="p-3 border-t border-base-300 bg-base-200">
-                            <button class="btn btn-primary btn-sm w-full">
-                                <i data-lucide="list" class="w-4 h-4"></i>
-                                مشاهده همه اعلان‌ها
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Theme toggle -->
-                <button id="theme-toggle" class="btn btn-ghost btn-circle">
-                    <i data-lucide="sun" class="hidden"></i>
-                    <i data-lucide="moon" class="block"></i>
+            <div class="border-t pt-4">
+                <button class="btn btn-outline btn-sm w-full">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    مشاهده همه برنامه‌ها
                 </button>
+            </div>
+        </div>
+    </div>
 
-                <!-- Theme settings button -->
-                <button id="theme-settings-button" class="btn btn-ghost btn-circle">
-                    <i data-lucide="palette"></i>
-                </button>
-
-                <!-- User profile dropdown -->
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
-                            <img src="src/user.jpg" alt="user avatar" />
-                        </div>
-                    </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a class="justify-between">
-                                پروفایل
-                                <span class="badge">جدید</span>
-                            </a>
-                        </li>
-                        <li><a>تنظیمات</a></li>
-                        <li><a class="text-error">خروج</a></li>
-                    </ul>
-                </div>
+    <!-- Notification icon -->
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+            <div class="indicator">
+                <i data-lucide="bell"></i>
+                <span class="badge badge-xs badge-primary indicator-item">۳</span>
             </div>
         </div>
 
-        <div class="flex">
-            <!-- Sidebar -->
-            <aside id="sidebar"
-                class="bg-base-200 min-h-screen fixed right-0 top-18 z-40 transition-all duration-300 ease-in-out w-64"
-                :class="{
-                    'translate-x-0': !sidebarCollapsed && !sidebarOpen,
-                    'translate-x-full': sidebarCollapsed && !sidebarOpen,
-                    'translate-x-0': sidebarOpen
-                }"
-                x-show="!sidebarCollapsed || sidebarOpen"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 transform translate-x-full"
-                x-transition:enter-end="opacity-100 transform translate-x-0"
-                x-transition:leave="transition ease-in duration-300"
-                x-transition:leave-start="opacity-100 transform translate-x-0"
-                x-transition:leave-end="opacity-0 transform translate-x-full">
+        <div tabindex="0" class="mt-3 z-[1] dropdown-content bg-base-100 rounded-box shadow-xl w-80 max-h-96 overflow-hidden">
+            <div class="p-4 border-b border-base-300">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-lg">اعلان‌ها</h3>
+                    <span class="badge badge-primary badge-sm">۳ جدید</span>
+                </div>
+            </div>
 
-                <!-- Sidebar Header -->
-                <div class="p-4 border-b border-base-300 flex items-center justify-between">
-                    <h2 class="text-xl font-bold">منو</h2>
-                    <button id="sidebar-toggle" class="btn btn-ghost btn-circle btn-sm flex-shrink-0 lg:hidden"
-                        @click="toggleMobileSidebar()">
-                        <i data-lucide="x"></i>
-                    </button>
+            <div class="overflow-y-auto max-h-64">
+                <div class="p-4 border-b border-base-300 hover:bg-base-200 cursor-pointer transition-colors">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="user-plus" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm">کاربر جدید ثبت شد</p>
+                            <p class="text-xs text-base-content/70 mt-1">
+                                کاربر "فاطمه محمدی" در سیستم ثبت نام کرد
+                            </p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="text-xs text-primary">۲ دقیقه پیش</span>
+                                <span class="badge badge-primary badge-xs">جدید</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Navigation Menu -->
+                <div class="p-4 hover:bg-base-200 cursor-pointer transition-colors opacity-70">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-semibold text-sm">بروزرسانی سیستم</p>
+                            <p class="text-xs text-base-content/70 mt-1">
+                                بروزرسانی نسخه ۲.۱.۰ با موفقیت انجام شد
+                            </p>
+                            <span class="text-xs text-base-content/50 mt-2 block">۲ روز پیش</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 border-t border-base-300 bg-base-200">
+                <button class="btn btn-primary btn-sm w-full">
+                    <i data-lucide="list" class="w-4 h-4"></i>
+                    مشاهده همه اعلان‌ها
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme toggle -->
+    <button id="theme-toggle" class="btn btn-ghost btn-circle">
+        <i data-lucide="sun" class="hidden"></i>
+        <i data-lucide="moon" class="block"></i>
+    </button>
+
+    <!-- Theme settings button -->
+    <button id="theme-settings-button" class="btn btn-ghost btn-circle">
+        <i data-lucide="palette"></i>
+    </button>
+
+    <!-- User profile dropdown -->
+    <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                <img src="src/user.jpg" alt="user avatar" />
+            </div>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            <li>
+                <a class="justify-between">
+                    پروفایل
+                    <span class="badge">جدید</span>
+                </a>
+            </li>
+            <li><a>تنظیمات</a></li>
+            <li><a class="text-error">خروج</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    </div>
+
+    <div class="flex flex-1">
+        <!-- Sidebar -->
+        <aside id="sidebar"
+            class="bg-base-200 fixed right-0 top-16 h-[calc(100vh-4rem)] z-40 transition-all duration-300 ease-in-out w-64 flex flex-col">
+            <!-- Sidebar Header -->
+            <div class="p-4 border-b border-base-300 flex items-center justify-between">
+                <h2 class="text-xl font-bold">منو</h2>
+                <button id="sidebar-toggle" class="btn btn-ghost btn-circle btn-sm flex-shrink-0 lg:hidden">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="flex-1 overflow-y-auto">
                 <ul class="menu p-4 text-base-content">
                     <li>
-                        <a class="flex items-center gap-3 py-2">
+                        <a class="flex items-center gap-3 py-2" hx-get="/partials/box-grid.html" hx-swap="innerHTML"
+                            hx-target="#content">
                             <i data-lucide="layout-dashboard" class="w-5 h-5 flex-shrink-0"></i>
-                            <span>داشبورد</span>
+                            <span>منو کارت</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="flex items-center gap-3 py-2" hx-get="/partials/table.html" hx-swap="innerHTML"
+                            hx-target="#content">
+                            <i data-lucide="table" class="w-5 h-5 flex-shrink-0"></i>
+                            <span>نمونه جدول</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="flex items-center gap-3 py-2" hx-get="/partials/form.html" hx-swap="innerHTML"
+                            hx-target="#content">
+                            <i data-lucide="book-plus" class="w-5 h-5 flex-shrink-0"></i>
+                            <span>نمونه فرم</span>
                         </a>
                     </li>
 
@@ -300,124 +276,112 @@
                     </li>
 
                     <li>
-                        <a class="flex items-center gap-3 py-2">
+                        <a class="flex items-center gap-3 py-2" hx-get="/partials/gallery.html" hx-swap="innerHTML"
+                            hx-target="#content">
                             <i data-lucide="shopping-cart" class="w-5 h-5 flex-shrink-0"></i>
-                            <span class="flex-1">سفارشات</span>
+                            <span class="flex-1">گالری تصاویر</span>
                             <span class="badge badge-sm badge-primary">۵</span>
                         </a>
                     </li>
 
                     <li>
-                        <a class="flex items-center gap-3 py-2">
-                            <i data-lucide="settings" class="w-5 h-5 flex-shrink-0"></i>
-                            <span>تنظیمات</span>
+                        <a class="flex items-center gap-3 py-2" href="login.html">
+                            <i data-lucide="log-in" class="w-5 h-5 flex-shrink-0"></i>
+                            <span>فرم ورود</span>
                         </a>
                     </li>
+
                 </ul>
+            </div>
 
-                <!-- Sidebar Footer -->
-                <div class="absolute bottom-0 w-full p-4 border-t border-base-300">
-                    <div class="flex items-center gap-3">
-                        <div class="avatar flex-shrink-0">
-                            <div
-                                class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
-                                <img src="src/user.jpg" alt="user avatar">
-                            </div>
-                        </div>
-                        <div>
-                            <p class="font-bold">محمد محمدی</p>
-                            <p class="text-sm opacity-70">مدیر سیستم</p>
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-base-300 mt-auto">
+                <div class="flex items-center gap-3">
+                    <div class="avatar flex-shrink-0">
+                        <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                            <img src="src/user.jpg" alt="user avatar">
                         </div>
                     </div>
-                </div>
-            </aside>
-
-            <!-- Main content -->
-            <main class="flex-1 p-6 min-h-screen transition-all duration-300 ease-in-out w-full"
-                :class="sidebarCollapsed ? 'mr-0' : 'mr-64'">
-                <!-- Content will be added here later -->
-                <div class="flex items-center justify-center h-64">
-                    <div class="text-center">
-                        <i data-lucide="layout-dashboard" class="w-16 h-16 mx-auto text-base-content/30 mb-4"></i>
-                        <h2 class="text-xl font-semibold mb-2">محتوای صفحه</h2>
-                        <p class="text-base-content/70">
-                            محتوای این بخش به زودی اضافه خواهد شد
-                        </p>
-                    </div>
-                </div>
-            </main>
-        </div>
-
-        <!-- Footer -->
-        <footer class="footer footer-center p-4 bg-base-300 text-base-content transition-all duration-300 ease-in-out w-full"
-            :class="sidebarCollapsed ? 'mr-0' : 'mr-64'">
-            <aside>
-                <p>کلیه حقوق محفوظ است</p>
-            </aside>
-        </footer>
-
-        <!-- Theme Settings Modal -->
-        <dialog id="theme-settings-modal" class="modal">
-            <div class="modal-box">
-                <form method="dialog">
-                    <button class="btn btn-sm btn-circle btn-ghost absolute left-4 top-4">
-                        ✕
-                    </button>
-                </form>
-                <h3 class="font-bold text-lg mb-6">تنظیمات تم</h3>
-
-                <div class="space-y-6">
-                    <!-- Theme mode -->
                     <div>
-                        <h4 class="font-semibold mb-2">حالت تم</h4>
-                        <div class="flex gap-2">
-                            <button class="theme-toggle-btn flex-1 btn btn-outline" data-theme="light">
-                                <i data-lucide="sun" class="w-4 h-4"></i>
-                                روشن
-                            </button>
-                            <button class="theme-toggle-btn flex-1 btn btn-outline" data-theme="dark">
-                                <i data-lucide="moon" class="w-4 h-4"></i>
-                                تیره
-                            </button>
-                        </div>
+                        <p class="font-bold">محمد محمدی</p>
+                        <p class="text-sm opacity-70">مدیر سیستم</p>
                     </div>
+                </div>
+            </div>
+        </aside>
 
-                    <!-- Color scheme -->
-                    <div>
-                        <h4 class="font-semibold mb-2">رنگ اصلی</h4>
-                        <div class="flex gap-2 flex-wrap">
-                            <button class="color-scheme-btn btn btn-sm btn-primary" data-theme="light">
-                                آبی
-                            </button>
-                            <button class="color-scheme-btn btn btn-sm" data-theme="dark">
-                                سبز
-                            </button>
-                            <button class="color-scheme-btn btn btn-sm" data-theme="cupcake">
-                                قرمز
-                            </button>
-                            <button class="color-scheme-btn btn btn-sm" data-theme="bumblebee">
-                                زرد
-                            </button>
-                        </div>
+        <!-- Main content -->
+        <main class="flex-1 p-6 transition-all duration-300 ease-in-out w-full mr-0 lg:mr-64" id="main-content">
+            <!-- Content will be added here later -->
+            <div class="flex items-center justify-center h-full" id="content">
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold mb-4">به سامانه مدیریت منابع سازمان خوش آمدید</h1>
+                    <p class="text-gray-600">برای شروع از منوی سمت راست یکی از گزینه‌ها را انتخاب کنید</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Theme Settings Modal -->
+    <dialog id="theme-settings-modal" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute left-4 top-4">
+                    ✕
+                </button>
+            </form>
+            <h3 class="font-bold text-lg mb-6">تنظیمات تم</h3>
+
+            <div class="space-y-6">
+                <!-- Theme mode -->
+                <div>
+                    <h4 class="font-semibold mb-2">حالت تم</h4>
+                    <div class="flex gap-2">
+                        <button class="theme-toggle-btn flex-1 btn btn-outline" data-theme="light">
+                            <i data-lucide="sun" class="w-4 h-4"></i>
+                            روشن
+                        </button>
+                        <button class="theme-toggle-btn flex-1 btn btn-outline" data-theme="dark">
+                            <i data-lucide="moon" class="w-4 h-4"></i>
+                            تیره
+                        </button>
                     </div>
                 </div>
 
-                <div class="modal-action">
-                    <form method="dialog">
-                        <button class="btn btn-primary">تأیید</button>
-                    </form>
+                <!-- Color scheme -->
+                <div>
+                    <h4 class="font-semibold mb-2">رنگ اصلی</h4>
+                    <div class="flex gap-2 flex-wrap">
+                        <button class="color-scheme-btn btn btn-sm btn-primary" data-theme="light">
+                            آبی
+                        </button>
+                        <button class="color-scheme-btn btn btn-sm" data-theme="dark">
+                            سبز
+                        </button>
+                        <button class="color-scheme-btn btn btn-sm" data-theme="cupcake">
+                            قرمز
+                        </button>
+                        <button class="color-scheme-btn btn btn-sm" data-theme="bumblebee">
+                            زرد
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <form method="dialog" class="modal-backdrop">
-                <button>بستن</button>
-            </form>
-        </dialog>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn btn-primary">تأیید</button>
+                </form>
+            </div>
+        </div>
 
-        <!-- Overlay for mobile sidebar -->
-        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-            x-show="sidebarOpen" @click="toggleMobileSidebar()" x-cloak></div>
-    </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>بستن</button>
+        </form>
+    </dialog>
+
+    <!-- Overlay for mobile sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"></div>
 
     <script>
         // Initialize Lucide icons
@@ -425,7 +389,7 @@
 
         // State management
         const state = {
-            sidebarCollapsed: false,
+            sidebarCollapsed: localStorage.getItem('sidebarCollapsed') === 'true',
             sidebarOpen: false,
         };
 
@@ -433,19 +397,59 @@
         const sidebar = document.getElementById("sidebar");
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const sidebarToggle = document.getElementById("sidebar-toggle");
+        const sidebarCollapseButton = document.getElementById("sidebar-collapse-button");
+        const collapseIcon = document.getElementById("collapse-icon");
+        const expandIcon = document.getElementById("expand-icon");
         const sidebarOverlay = document.getElementById("sidebar-overlay");
+        const mainContent = document.getElementById("main-content");
         const themeToggle = document.getElementById("theme-toggle");
-        const themeSettingsButton = document.getElementById(
-            "theme-settings-button"
-        );
-        const themeSettingsModal = document.getElementById(
-            "theme-settings-modal"
-        );
+        const themeSettingsButton = document.getElementById("theme-settings-button");
+        const themeSettingsModal = document.getElementById("theme-settings-modal");
+
+        // Initialize sidebar state
+        function initSidebar() {
+            if (state.sidebarCollapsed) {
+                sidebar.classList.add('translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                collapseIcon.classList.add('hidden');
+                expandIcon.classList.remove('hidden');
+                mainContent.classList.remove('lg:mr-64');
+                mainContent.classList.add('mr-0');
+            } else {
+                sidebar.classList.remove('translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                collapseIcon.classList.remove('hidden');
+                expandIcon.classList.add('hidden');
+                mainContent.classList.remove('mr-0');
+                mainContent.classList.add('lg:mr-64');
+            }
+        }
+
+        // Toggle sidebar collapse (desktop)
+        function toggleFullCollapse() {
+            state.sidebarCollapsed = !state.sidebarCollapsed;
+            localStorage.setItem('sidebarCollapsed', state.sidebarCollapsed);
+            initSidebar();
+        }
+
+        // Toggle mobile sidebar
+        function toggleMobileSidebar() {
+            state.sidebarOpen = !state.sidebarOpen;
+
+            if (state.sidebarOpen) {
+                sidebar.classList.remove('translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                sidebarOverlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.remove('translate-x-0');
+                sidebar.classList.add('translate-x-full');
+                sidebarOverlay.classList.add('hidden');
+            }
+        }
 
         // Toggle theme
         function toggleTheme() {
-            const currentTheme =
-                document.documentElement.getAttribute("data-theme");
+            const currentTheme = document.documentElement.getAttribute("data-theme");
             const newTheme = currentTheme === "light" ? "dark" : "light";
             document.documentElement.setAttribute("data-theme", newTheme);
 
@@ -486,9 +490,14 @@
         function loadSettings() {
             const savedTheme = localStorage.getItem("theme") || "light";
             changeTheme(savedTheme);
+            initSidebar();
         }
 
         // Event listeners
+        mobileMenuButton.addEventListener("click", toggleMobileSidebar);
+        sidebarToggle.addEventListener("click", toggleMobileSidebar);
+        sidebarCollapseButton.addEventListener("click", toggleFullCollapse);
+        sidebarOverlay.addEventListener("click", toggleMobileSidebar);
         themeToggle.addEventListener("click", toggleTheme);
 
         themeSettingsButton.addEventListener("click", () => {
@@ -516,6 +525,12 @@
 
         // Initialize
         loadSettings();
+    </script>
+    <script>
+        document.body.addEventListener("htmx:afterSwap", function (evt) {
+            // Re-initialize Lucide icons after HTMX swaps content
+            lucide.createIcons();
+        });
     </script>
 </body>
 
