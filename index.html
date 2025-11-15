@@ -6,15 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>سامانه مدیریت منابع سازمان</title>
 
-    <!-- Vazirmatn Font -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/math@4.5.0/index.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/misc@4.5.0/index.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/UI@4.5.0/index.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vazirmatn/variable@4.5.0/index.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"
+        type="text/css" />
 
     <!-- Tailwind CSS + DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -39,185 +36,195 @@
     <!-- Navbar -->
     <div class="navbar bg-base-100 shadow-sm border-b border-base-300 sticky top-0 z-50">
         <div class="flex-1">
-    <!-- Mobile menu button -->
-    <button id="mobile-menu-button" class="btn btn-ghost btn-circle lg:hidden">
-        <i data-lucide="menu"></i>
-    </button>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="btn btn-ghost btn-circle lg:hidden">
+                <i data-lucide="menu"></i>
+            </button>
 
-    <!-- Sidebar Collapse/Expand Button -->
-    <button id="sidebar-collapse-button" class="ms-2 btn btn-ghost btn-circle hidden lg:flex">
-        <i data-lucide="panel-right-close" class="w-7 h-7" id="collapse-icon"></i>
-        <i data-lucide="panel-right-open" class="w-7 h-7 hidden" id="expand-icon"></i>
-    </button>
+            <!-- Sidebar Collapse/Expand Button -->
+            <button id="sidebar-collapse-button" class="ms-2 btn btn-ghost btn-circle hidden lg:flex">
+                <i data-lucide="panel-right-close" class="w-7 h-7" id="collapse-icon"></i>
+                <i data-lucide="panel-right-open" class="w-7 h-7 hidden" id="expand-icon"></i>
+            </button>
 
-    <!-- Brand/Logo -->
-    <a class="btn btn-ghost text-xl ms-2">سامانه مدیریت منابع سازمان</a>
-</div>
-
-<div class="flex-none gap-2">
-
-    <!-- Search input -->
-    <div class="form-control hidden lg:flex">
-        <input type="text" placeholder="جستجو..." class="input input-bordered w-32 md:w-auto" />
-    </div>
-
-    <!-- Applications Dropdown -->
-    <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle hidden lg:flex">
-            <i data-lucide="grid-3x3" class="w-6 h-6"></i>
-        </div>
-        <div tabindex="0" class="dropdown-content z-[1] bg-base-100 rounded-box shadow-xl p-6 w-80 mt-4">
-            <div class="grid grid-cols-3 gap-4 mb-4">
-
-                <!-- App 1 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">پیام‌رسان</span>
-                </div>
-
-                <!-- App 2 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">فروشگاه</span>
-                </div>
-
-                <!-- App 3 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">آمار</span>
-                </div>
-
-                <!-- App 4 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="settings" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">تنظیمات</span>
-                </div>
-
-                <!-- App 5 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="users" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">کاربران</span>
-                </div>
-
-                <!-- App 6 -->
-                <div class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <span class="text-xs font-medium">اسناد</span>
-                </div>
-            </div>
-
-            <div class="border-t pt-4">
-                <button class="btn btn-outline btn-sm w-full">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                    مشاهده همه برنامه‌ها
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification icon -->
-    <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-            <div class="indicator">
-                <i data-lucide="bell"></i>
-                <span class="badge badge-xs badge-primary indicator-item">۳</span>
-            </div>
+            <!-- Brand/Logo -->
+            <a class="btn btn-ghost text-xl ms-2">سامانه مدیریت منابع سازمان</a>
         </div>
 
-        <div tabindex="0" class="mt-3 z-[1] dropdown-content bg-base-100 rounded-box shadow-xl w-80 max-h-96 overflow-hidden">
-            <div class="p-4 border-b border-base-300">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-lg">اعلان‌ها</h3>
-                    <span class="badge badge-primary badge-sm">۳ جدید</span>
-                </div>
+        <div class="flex-none gap-2">
+
+            <!-- Search input -->
+            <div class="form-control hidden lg:flex">
+                <input type="text" placeholder="جستجو..." class="input input-bordered w-32 md:w-auto" />
             </div>
 
-            <div class="overflow-y-auto max-h-64">
-                <div class="p-4 border-b border-base-300 hover:bg-base-200 cursor-pointer transition-colors">
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i data-lucide="user-plus" class="w-5 h-5 text-white"></i>
+            <!-- Applications Dropdown -->
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle hidden lg:flex">
+                    <i data-lucide="grid-3x3" class="w-6 h-6"></i>
+                </div>
+                <div tabindex="0" class="dropdown-content z-[1] bg-base-100 rounded-box shadow-xl p-6 w-80 mt-4">
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+
+                        <!-- App 1 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">پیام‌رسان</span>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <p class="font-semibold text-sm">کاربر جدید ثبت شد</p>
-                            <p class="text-xs text-base-content/70 mt-1">
-                                کاربر "فاطمه محمدی" در سیستم ثبت نام کرد
-                            </p>
-                            <div class="flex items-center gap-2 mt-2">
-                                <span class="text-xs text-primary">۲ دقیقه پیش</span>
-                                <span class="badge badge-primary badge-xs">جدید</span>
+
+                        <!-- App 2 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">فروشگاه</span>
+                        </div>
+
+                        <!-- App 3 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="bar-chart-3" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">آمار</span>
+                        </div>
+
+                        <!-- App 4 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="settings" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">تنظیمات</span>
+                        </div>
+
+                        <!-- App 5 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">کاربران</span>
+                        </div>
+
+                        <!-- App 6 -->
+                        <div
+                            class="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center shadow-md">
+                                <i data-lucide="file-text" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <span class="text-xs font-medium">اسناد</span>
+                        </div>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <button class="btn btn-outline btn-sm w-full">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            مشاهده همه برنامه‌ها
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification icon -->
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                    <div class="indicator">
+                        <i data-lucide="bell"></i>
+                        <span class="badge badge-xs badge-primary indicator-item">۳</span>
+                    </div>
+                </div>
+
+                <div tabindex="0"
+                    class="mt-3 z-[1] dropdown-content bg-base-100 rounded-box shadow-xl w-80 max-h-96 overflow-hidden">
+                    <div class="p-4 border-b border-base-300">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-lg">اعلان‌ها</h3>
+                            <span class="badge badge-primary badge-sm">۳ جدید</span>
+                        </div>
+                    </div>
+
+                    <div class="overflow-y-auto max-h-64">
+                        <div class="p-4 border-b border-base-300 hover:bg-base-200 cursor-pointer transition-colors">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="user-plus" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-sm">کاربر جدید ثبت شد</p>
+                                    <p class="text-xs text-base-content/70 mt-1">
+                                        کاربر "فاطمه محمدی" در سیستم ثبت نام کرد
+                                    </p>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <span class="text-xs text-primary">۲ دقیقه پیش</span>
+                                        <span class="badge badge-primary badge-xs">جدید</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 hover:bg-base-200 cursor-pointer transition-colors opacity-70">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-sm">بروزرسانی سیستم</p>
+                                    <p class="text-xs text-base-content/70 mt-1">
+                                        بروزرسانی نسخه ۲.۱.۰ با موفقیت انجام شد
+                                    </p>
+                                    <span class="text-xs text-base-content/50 mt-2 block">۲ روز پیش</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="p-4 hover:bg-base-200 cursor-pointer transition-colors opacity-70">
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-white"></i>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <p class="font-semibold text-sm">بروزرسانی سیستم</p>
-                            <p class="text-xs text-base-content/70 mt-1">
-                                بروزرسانی نسخه ۲.۱.۰ با موفقیت انجام شد
-                            </p>
-                            <span class="text-xs text-base-content/50 mt-2 block">۲ روز پیش</span>
-                        </div>
+                    <div class="p-3 border-t border-base-300 bg-base-200">
+                        <button class="btn btn-primary btn-sm w-full">
+                            <i data-lucide="list" class="w-4 h-4"></i>
+                            مشاهده همه اعلان‌ها
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <div class="p-3 border-t border-base-300 bg-base-200">
-                <button class="btn btn-primary btn-sm w-full">
-                    <i data-lucide="list" class="w-4 h-4"></i>
-                    مشاهده همه اعلان‌ها
-                </button>
+            <!-- Theme toggle -->
+            <button id="theme-toggle" class="btn btn-ghost btn-circle">
+                <i data-lucide="sun" class="hidden"></i>
+                <i data-lucide="moon" class="block"></i>
+            </button>
+
+            <!-- Theme settings button -->
+            <button id="theme-settings-button" class="btn btn-ghost btn-circle">
+                <i data-lucide="palette"></i>
+            </button>
+
+            <!-- User profile dropdown -->
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                        <img src="src/user.jpg" alt="user avatar" />
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li>
+                        <a class="justify-between">
+                            پروفایل
+                            <span class="badge">جدید</span>
+                        </a>
+                    </li>
+                    <li><a>تنظیمات</a></li>
+                    <li><a class="text-error">خروج</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-
-    <!-- Theme toggle -->
-    <button id="theme-toggle" class="btn btn-ghost btn-circle">
-        <i data-lucide="sun" class="hidden"></i>
-        <i data-lucide="moon" class="block"></i>
-    </button>
-
-    <!-- Theme settings button -->
-    <button id="theme-settings-button" class="btn btn-ghost btn-circle">
-        <i data-lucide="palette"></i>
-    </button>
-
-    <!-- User profile dropdown -->
-    <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full bg-primary text-primary-content flex items-center justify-center">
-                <img src="src/user.jpg" alt="user avatar" />
-            </div>
-        </div>
-        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li>
-                <a class="justify-between">
-                    پروفایل
-                    <span class="badge">جدید</span>
-                </a>
-            </li>
-            <li><a>تنظیمات</a></li>
-            <li><a class="text-error">خروج</a></li>
-        </ul>
-    </div>
-</div>
 
 
     </div>
