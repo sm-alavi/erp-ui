@@ -428,32 +428,36 @@
             lucide.createIcons();
         });
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Detect GitHub Pages
-            const isGitHubPages = window.location.hostname.endsWith("github.io");
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const hostname = window.location.hostname;
+    const pathname = window.location.pathname;
 
-            if (!isGitHubPages) {
-                // Running locally → do nothing
-                return;
-            }
+    // Detect GitHub Pages
+    const isGitHubPages = hostname.endsWith("github.io");
+    if (!isGitHubPages) return; // Local dev → do nothing
 
-            // Extract repo name from the GitHub Pages URL
-            // Example: https://username.github.io/reponame/...
-            const parts = window.location.pathname.split("/").filter(Boolean);
-            const repo = parts.length > 0 ? parts[0] : "";
+    // Determine repo name (for project site)
+    // pathname example: /myrepo/index.html → repo = "myrepo"
+    const pathParts = pathname.split("/").filter(Boolean);
+    let repoPrefix = "";
+    
+    if (pathParts.length > 0) {
+        // GitHub Pages project site: prepend repo name
+        repoPrefix = "/" + pathParts[0];
+    }
 
-            // Rewrite all hx-get attributes on GitHub Pages
-            document.querySelectorAll("[hx-get]").forEach(el => {
-                const original = el.getAttribute("hx-get");
+    // Rewrite hx-get URLs
+    document.querySelectorAll("[hx-get]").forEach(el => {
+        const original = el.getAttribute("hx-get");
+        // Only rewrite relative paths (no leading /, no http)
+        if (!original.startsWith("/") && !original.startsWith("http")) {
+            el.setAttribute("hx-get", `${repoPrefix}/${original}`);
+        }
+    });
+});
+</script>
 
-                // Only rewrite relative paths (not http://, not starting with "/")
-                if (!original.startsWith("http") && !original.startsWith("/")) {
-                    el.setAttribute("hx-get", `/${repo}/${original}`);
-                }
-            });
-        });
-    </script>
 
 </body>
 
